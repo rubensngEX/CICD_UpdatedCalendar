@@ -56,16 +56,12 @@ class Calendar {
   
         .calendar-header button {
           padding: 5px 10px;
-          background-color: #007bff;
+          background-color: #182a4e;
           color: white;
           border: none;
           border-radius: 5px;
           cursor: pointer;
           transition: background 0.3s;
-        }
-  
-        .calendar-header button:hover {
-          background-color: #0056b3;
         }
       `;
       document.head.appendChild(style);
@@ -195,17 +191,21 @@ class Calendar {
           const cell = document.createElement("td");
           cell.textContent = day;
           cell.classList.add("calendar-day");
-    
+
+
           // Highlight deadlines
           if (this.hasDeadline(day)) {
+            const projectsDue = this.getProjectsForDate(day);
+            console.log(projectsDue)
             cell.classList.add("deadline");
             cell.title = this.getProjectsForDate(day).join(", ");
-    
+            
             // Click event to show project names
-            cell.addEventListener("click", () => {
-              notyf.success(`Projects Due on ${day}/${month + 1}/${year}:\n` + cell.title);
-            });
-          }
+              cell.addEventListener("click", (i) => {
+
+              notyf.success(`Projects Due on ${day}/${month + 1}/${year}:\n${cell.title}`);
+              });
+            }
     
           row.appendChild(cell);
     
@@ -226,8 +226,11 @@ class Calendar {
         this.container.appendChild(calendarHeader);
         this.container.appendChild(table);
       }
-    
-      
+
+      formatTime(deadline) {
+        const date = new Date(deadline);
+        return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
+      }     
     
       addEventListeners() {
         // No additional event listeners needed for this vanilla JavaScript implementation
@@ -261,10 +264,23 @@ class Calendar {
             deadlineDate.getMonth() === this.currentDate.getMonth() &&
             deadlineDate.getFullYear() === this.currentDate.getFullYear()
           ) {
-            projects.push(this.projectNames[index]);
+            projects.push(`${this.projectNames[index]} due at ${this.formatTime(this.deadlines[index])}`);
           }
-          console.log("Deadline: " + deadlineDate + "projects: " + projects)
           return projects;
+        }, []);
+      }
+
+      getDeadlinesForProjectOnDate(date) {
+        return this.deadlines.reduce((projectsTime, deadline, index) => {
+          const deadlineDate = new Date(deadline);
+          if (
+            deadlineDate.getDate() === date &&
+            deadlineDate.getMonth() === this.currentDate.getMonth() &&
+            deadlineDate.getFullYear() === this.currentDate.getFullYear()
+          ) {
+            projectsTime.push(`${deadlineDate.getHours()}:${deadlineDate.getMinutes()}`);
+          }
+          return projectsTime;
         }, []);
       }
   }
