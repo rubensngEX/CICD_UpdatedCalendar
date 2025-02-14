@@ -1,0 +1,400 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+#g_id_signin {
+  font-family: Arial, sans-serif;
+}
+/* Background image with blur */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+  background: linear-gradient(90deg, #18284E, #27417d, #406bcf, #ffffff);
+  background-size: 200% 200%; /* Necessary for smooth animation */
+  animation: gradientAnimation 6s ease infinite;
+  background-position: center; /* Center the gradient */
+  z-index: -1; /* Place behind the container */
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+.container {
+  display: flex;
+  flex-direction:row;
+  width: 800px;
+  height: 550px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: transform 0.6s ease-in-out;
+}
+
+.left-section,
+.right-section {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.left-section {
+  background-image: url("./images/foreground.jpg"); /* Replace 'your-image.jpg' with the path to your image */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.right-section {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.form-group {
+  position: relative;
+  margin: 0.5rem auto; /* Auto centers it horizontally */
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Aligns content horizontally */
+}
+
+
+.form-group input {
+  width: 90%;
+  padding: 0.75rem 0.75rem 0.75rem 4rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  border-color: #18284E;
+  outline: none;
+}
+
+.form-group i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #18284E;
+}
+.fa-user, .fa-lock, .fa-envelope {
+  left: 0.4rem;
+}
+
+.toggle-password {
+  right: 0.2rem;
+  cursor: pointer;
+}
+
+.login-button,
+.send-button {
+  width: 100%;
+  max-width: 350px;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #18284E;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.login-button:hover,
+.send-button:hover {
+  background-color: #18284E;
+}
+
+/* Success message styling */
+.success-message {
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    width: 730px; /* Adjust width for smaller screens */
+    max-width: 500px; /* Limit maximum width */
+    height: 80%; /* Use the full height of the screen */
+    margin: auto; /* Center the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .left-section {
+    height: 150px; /* Reduce height for the left section */
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .right-section {
+    flex: 1; /* Allow it to expand and take available space */
+    width: 100%;
+    padding: 1rem; /* Reduce padding for smaller screens */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align content to the top */
+    overflow-y: auto; /* Enable scrolling for the section if needed */
+  }
+
+  .right-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .toggle-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .toggle-btn {
+    font-size: 14px;
+    margin: 0 5px;
+    padding: 10px;
+  }
+
+  .form-wrapper {
+    max-height: 65vh; /* Limit form height further */
+    overflow-y: auto; /* Enable scrolling if needed */
+  }
+
+  .form-group {
+    width: 70%;
+    max-width: 300px;
+    margin-bottom: 0.75rem;
+    margin-right: 4rem;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    padding-left: 4rem;
+    font-size: 0.9rem;
+  }
+
+  .toggle-btn {
+    font-size: 12px;
+    padding: 8px;
+    margin-right: 4rem;
+  }
+
+  .login-button,
+  .send-button {
+    max-width: 330px;
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .container {
+    width: 360px;
+    max-width: 350px;
+    height: 80%;
+  }
+
+  .left-section {
+    height: 120px; /* Further reduce height */
+    flex-shrink: 0; /* Prevent shrinking of the image */
+  }
+
+  .right-section {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto; /* Ensure the form scrolls when needed */
+  }
+
+  .form-wrapper {
+    max-height: 65vh; /* Limit form height further */
+    overflow-y: auto; /* Enable scrolling if needed */
+  }
+
+  .form-group {
+    width: 70%;
+    max-width: 300px;
+    margin-bottom: 0.75rem;
+    margin-right: 4rem;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    padding-left: 4rem;
+    font-size: 0.9rem;
+  }
+
+  .toggle-btn {
+    font-size: 12px;
+    padding: 8px;
+    margin-right: 4rem;
+  }
+
+  .login-button,
+  .send-button {
+    max-width: 330px;
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 360px;
+    max-width: 350px;
+    height: 80%;
+  }
+
+  .left-section {
+    height: 120px; /* Further reduce height */
+    flex-shrink: 0; /* Prevent shrinking of the image */
+  }
+
+  .right-section {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto; /* Ensure the form scrolls when needed */
+  }
+
+  .form-wrapper {
+    max-height: 65vh; /* Limit form height further */
+    overflow-y: auto; /* Enable scrolling if needed */
+  }
+
+  .form-group {
+    width: 80%;
+    max-width: 300px;
+    margin-bottom: 0.75rem;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    padding-left: 4rem;
+    font-size: 0.9rem;
+  }
+
+  .toggle-btn {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .login-button,
+  .send-button {
+    max-width: 330px;
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+}
+
+/* Add styles for toggle buttons */
+.toggle-buttons {
+  display: flex;
+  justify-content: center; /* Horizontally centers the buttons */
+  align-items: center; /* Vertically centers the buttons */
+  margin-bottom: 1rem; /* Adds spacing below the buttons */
+  width: 100%;
+}
+
+.toggle-btn {
+  flex: 1; /* Distributes space evenly between buttons */
+  max-width: 140px; /* Sets a maximum width for each button */
+  padding: 10px;
+  margin: 0 10px; /* Adds spacing between the buttons */
+  border: 2px solid #18284E;
+  background: none;
+  color: #18284E;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  text-align: center; /* Centers the button text */
+}
+
+.toggle-btn.active {
+  background: #18284E;
+  color: white;
+}
+
+.toggle-btn:hover {
+  background: #0f1a3b;
+  color: white;
+}
+
+/* Form container styling */
+.form-wrapper {
+  position: relative;
+  margin: 0.5rem auto; /* Auto centers it horizontally */
+  width: 100%;
+  max-width: 350px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Aligns content horizontally */
+}
+
+/* Form sliding animation */
+.form {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.5s ease-in-out;
+}
+
+.active-form {
+    top: 0;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden-form {
+    top: 100%;
+    opacity: 0;
+    transform: translateY(100%);
+}

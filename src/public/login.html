@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+</head>
+
+<body>
+    <div class="background-image"></div>
+    <div class="container" id="container">
+        <div class="left-section"></div>
+        <div class="right-section">
+            <!-- Toggle Buttons -->
+            <div class="toggle-buttons">
+                <button id="signinBtn" class="toggle-btn active" onclick="showLogin()">Sign In</button>
+                <button id="signupBtn" class="toggle-btn" onclick="showSignup()">Sign Up</button>
+            </div>
+            <h2 id="form-title">Welcome!</h2>
+            <!-- Forms -->
+            <div class="form-wrapper">
+                <form id="login-form" class="form active-form">
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="usernameOrEmail" placeholder="Username or Email" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Password" required>
+                        <i class="fas fa-eye toggle-password" data-target="password"></i>
+                    </div>
+                    <button type="submit" class="login-button">LOGIN</button>
+                    <div class="g_id_signin" data-type="standard"></div>
+                </form>
+                <form id="signup-form" class="form hidden-form">
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="fullName" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="registerPassword" placeholder="Password" required>
+                        <i class="fas fa-eye toggle-password" data-target="registerPassword"></i>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                        <i class="fas fa-eye toggle-password" data-target="confirmPassword"></i>
+                    </div>
+
+                    <button type="submit" class="send-button">SIGN UP</button>
+                    <div class="g_id_signin" data-type="standard"></div>
+                </form>                
+            </div>
+            
+        </div>
+        <!-- Google Sign-In Button -->
+        <div id="g_id_onload"
+            data-client_id="376351528756-ebdag50v6elarsj2adgmch4mdf6ob116.apps.googleusercontent.com"
+            data-callback="handleCredentialResponse"
+            data-auto_prompt="false">
+        </div>
+    </div>    
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script src="https://kit.fontawesome.com/f01649545e.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./LoginRegisterForm.js"></script>
+    <script type="text/javascript" src="./login.js"></script>
+    <script type="text/javascript" src="./register.js"></script>
+</body>
+</html>

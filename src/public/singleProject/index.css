@@ -1,0 +1,181 @@
+.selectedTab {
+    color: #fff;
+    background-color: #182a4e;
+    border-radius: 5px 5px 0 0;
+}
+
+.card {
+    display: block; /* or flex/grid depending on your layout needs */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a shadow for depth */
+    padding: 16px; /* Space inside the card */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #fff; /* Background color */
+    border: 1px solid #ddd; /* Optional border */
+    margin: 8px; /* Space around the card */
+    width: 300px; /* Set a fixed width or allow it to grow */
+}
+
+#addNewTaskBtn {
+    display: block;
+}
+
+/* Styling for outer task table */
+.task-table {
+    max-width: 75vw;
+    margin: 30px;
+    border-collapse: collapse; /* Ensures borders don't double up */
+}
+
+.task-table th, .task-table td {
+    padding: 10px;
+    border: 2px solid #182a4e;
+    text-align: center;
+}
+
+.task-table tr:nth-child(even) {
+    background-color: rgba(24, 42, 78, 0.2);
+}
+
+.task-table tr:nth-child(odd) { 
+    background-color: #ffffff;
+}
+
+/* Styling for inner assignee table */
+.task-assignees {
+    width: 100%;
+}
+
+td.assigneeAction {
+    margin: 0px;
+    padding: 0px;
+}
+
+.task-assignees td {
+    border: none; /* Border for inner table cells */
+}
+
+.task-assignees th, .task-assignees td {
+    text-align: center;
+}
+
+.task-assignees td {
+    margin-top: 2px;
+    padding: 0px;
+}
+
+.task-assignees .assigneeRow {
+    background-color: transparent;
+}
+
+.task-assignees .assigneeRow:nth-child(even), .task-assignees .assigneeRow:nth-child(odd) {
+    background-color: transparent;
+}
+
+.task-assignees .assigneeCol {
+    width: 60px;
+}
+
+
+.unassignButton, .transferAssignButton {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#search-bar-div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px; 
+    margin-bottom: 5px;
+    margin: auto;
+  }
+
+.table-container {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 80vw; 
+    margin: auto; 
+}
+
+th {
+    background-color: #182a4e;
+    color: white;
+    text-align: center; 
+    padding: 10px; 
+}  
+
+.unauth {
+    color: red;
+}
+
+.admin-actions {
+    display: none;
+}
+
+button.update-btn, button.assign-more-btn, button.delete-button {
+    margin-top: 5px;
+}
+
+#add-new-task-container, #add-new-dev-container {
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.noAssignee {
+    margin: auto;
+    color: gray;
+}
+
+/* Buttons */
+button {
+    background-color: #4d5c7b;
+    color: white;
+    border-radius: 10px  !important;
+}
+.right-bottom {
+    height: 40px;
+        background-color: tomato;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+}
+.left-bottom {
+    height: 40px;
+        background-color: #4d5c7b;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+}
+.fa-bell {
+    /* background-color: #4d5c7b; */
+    color: #182A4E;
+}
+
+button.delete-button {
+    background-color: rgb(214, 71, 71);
+}
+
+
+   .highlight {
+    background-color: rgba(255, 255, 0, 0.3);  /* Yellow background with transparency */
+    transition: background-color 0.5s ease;     /* Smooth transition effect */
+    animation: highlightAnimation 2s forwards;  /* Animation for highlighting */
+  }
+  
+  @keyframes highlightAnimation {
+    0% {
+      background-color: rgba(255, 255, 0, 0.3);
+    }
+    50% {
+      background-color: rgba(255, 255, 0, 0.5);  /* Brighter yellow halfway through */
+    }
+    100% {
+      background-color: rgba(255, 255, 0, 0.3);  /* Faded back to original yellow */
+    }
+  }
+  

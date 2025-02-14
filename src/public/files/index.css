@@ -1,0 +1,117 @@
+#manage-project-btn {
+    background-color: #182a4e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1.2rem;
+}
+
+#manage-project-btn:hover { 
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.card {
+    border: none;
+    border-radius: 15px;
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+    background: #182a4e !important;
+}
+
+#drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+#drop-area.dragover {
+    background-color: #e9ecef;
+    border-color: #0d6efd;
+}
+
+.file-card {
+    transition: all 0.3s ease;
+    background-color: #fff;
+}
+
+.file-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.file-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.file-name {
+    word-break: break-word;
+    font-size: 0.9rem;
+}
+
+.file-size {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.file-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.file-actions button {
+    opacity: 1 !important; /* Force buttons to always be visible */
+    transition: transform 0.2s ease;
+}
+
+.file-actions button:hover {
+    transform: scale(1.05);
+}
+
+/* Button colors */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.preview-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.progress {
+    height: 5px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.uploading {
+    animation: pulse 1s infinite;
+}

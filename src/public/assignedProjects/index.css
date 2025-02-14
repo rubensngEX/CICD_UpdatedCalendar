@@ -1,0 +1,212 @@
+#assignedProjects {
+    color: #fff;
+    background-color: #182a4e;
+    border-radius: 5px 5px 0 0;
+}
+.selected {
+    color: #fff;
+    background-color: #182a4e;
+    border-radius: 5px 5px 0 0;
+}
+
+
+/* Container to hold both columns */
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Left column styles */
+.left-column {
+    width: 30%;
+    padding-right: 20px;
+}
+
+#projectList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#projectList li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+
+#projectList li:hover {
+    background-color: rgba(24, 42, 78, 0.5);
+    color: white;
+}
+
+/* Right column styles */
+.right-column {
+    width: 65%;
+    padding-left: 20px;
+}
+
+#projectDetails {
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    font-variant: small-caps;
+    color: #182a4e;
+}
+
+#createProjectBtn,
+#manageProjButton {
+    border-radius: 15%;
+    color: white;
+    background-color: #182a4e;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+/* General card styles */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* Center alignment for chart container */
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style wrapper for chart alignment */
+.chart-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+/* Adjust pie chart size */
+#myChart {
+    max-width: 700px;
+    max-height: 500px;
+    width: 100%;
+    height: auto;
+}
+
+/* Optional: Add a hover effect for the chart */
+.chart-container:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Modal Styles */
+#createProjectModal .modal-content {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#createProjectModal .modal-header {
+    background-color: #007bff;
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#createProjectModal .modal-header .btn-close {
+    background-color: #fff;
+    opacity: 1;
+}
+
+#createProjectModal .modal-body {
+    padding: 20px;
+}
+
+#createProjectModal .form-label {
+    font-weight: bold;
+}
+
+#createProjectModal .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+#createProjectModal .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004b9a;
+}
+
+.addProjButton button {
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.manageProjButton button {
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.hidden {
+    display: none;
+}
+
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.content-container, #noProj {
+    display: none;
+}
+
+#noProj {
+    padding-top: 30px;
+    text-align: center;
+    color: red;
+}
+
+.empty {
+    display: none;
+}
+
+.view-files-btn {
+    background-color: #18284E;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.view-files-btn:hover {
+    background-color: #18284E;
+}

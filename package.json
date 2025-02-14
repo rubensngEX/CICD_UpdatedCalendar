@@ -1,0 +1,55 @@
+{
+  "dependencies": {
+    "@prisma/adapter-pg": "^5.20.0",
+    "@prisma/client": "^5.22.0",
+    "argon2": "^0.41.1",
+    "bcrypt": "^5.1.1",
+    "chart.js": "^4.4.6",
+    "cloudinary": "^1.41.3",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.4.7",
+    "dotenv-cli": "^7.4.2",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "formidable": "^3.5.2",
+    "google-auth-library": "^9.15.1",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.7",
+    "notyf": "^3.10.0",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "pg": "^8.13.0",
+    "pino": "^9.6.0",
+    "pino-logflare": "^0.4.2",
+    "pino-pretty": "^13.0.0",
+    "serve-favicon": "^2.5.0",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.11.1",
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.7.2",
+    "eslint": "^9.11.1",
+    "globals": "^15.9.0",
+    "nodemon": "^3.1.7",
+    "prisma": "^5.22.0"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "scripts": {
+    "postinstall": "npx prisma generate",
+    "migration:dev": "dotenv -e .env.development -- npx prisma migrate dev",
+    "migration:reset": "dotenv -e .env.development -- npx prisma migrate reset",
+    "start": "dotenv -e .env.development -- node ./src/server.js",
+    "dev": "dotenv -e .env.development -- nodemon ./src/server.js",
+    "check": "node ./src/server.js",
+    "test": "dotenv -e .env.test -- playwright test --config=configs/playwright.config.js",
+    "lint": "eslint -c configs/eslint.config.mjs ./src/**/*.{js,ts}",
+    "test-trace": "npm test -- --reporter=html --trace on"
+  }
+}
