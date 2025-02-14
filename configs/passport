@@ -1,0 +1,52 @@
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const { PrismaClient } = require("@prisma/client");
+require("dotenv").config();
+
+const prisma = new PrismaClient();
+
+passport.use(
+    new GoogleStrategy(
+        {
+            clientID: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            callbackURL: process.env.CALLBACK_URL
+        },
+        async (accessToken, refreshToken, profile, done) => {
+            try {
+                const googleId = profile.id;
+                const email = profile.emails?.[0]?.value || null;
+                const name = profile.displayName || "Unknown User";
+                const profilePic = profile.photos?.[0]?.value || null;
+
+                let user = await prisma.person.findUnique({
+                    where: { googleId }
+                });
+
+                if (!user) {
+                    user = await prisma.person.create({
+                        data: { googleId, email, name, avatar: profilePic }
+                    });
+                }
+
+                return done(null, user);
+            } catch (error) {
+                console.error("Google OAuth Error:", error);
+                return done(error, null);
+            }
+        }
+    )
+);
+
+passport.serializeUser((user, done) => done(null, user.id));
+
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await prisma.person.findUnique({ where: { id } });
+        return done(null, user);
+    } catch (error) {
+        return done(error, null);
+    }
+});
+
+module.exports = passport;

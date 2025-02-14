@@ -1,0 +1,190 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id           Int              @id @default(autoincrement())
+  name         String
+  priority     TaskPriority
+  projectId    Int
+  status       TaskStatus
+  completedAt  DateTime?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime
+  Notification Notification[]
+  Project      Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  persons      TaskAssignment[]
+
+  @@index([projectId])
+}
+
+model Person {
+  id                    Int                     @id @default(autoincrement())
+  email                 String                  @unique
+  name                  String                  @unique
+  avatar                String?
+  password              String?
+  googleId              String?                 @unique
+  teamId                Int?
+  File                  File[]
+  Notification          Notification[]
+  NotificationRecipient NotificationRecipient[]
+  Team                  Team?                   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  Project               Project[]
+  ProjectPerson         ProjectPerson[]
+  ProjectRequest        ProjectRequest[]
+  tasks                 TaskAssignment[]
+  TeamRequest           TeamRequest[]
+
+  @@index([email])
+  @@index([googleId])
+}
+
+model TaskAssignment {
+  taskId   Int
+  personId Int
+  id       Int    @id @default(autoincrement())
+  person   Person @relation(fields: [personId], references: [id], onDelete: Cascade)
+  task     Task   @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@unique([taskId, personId])
+  @@index([personId])
+  @@index([taskId])
+}
+
+model Project {
+  id               Int              @id @default(autoincrement())
+  name             String           @unique
+  description      String?
+  projectManagerId Int
+  completedAt      DateTime?
+  createdAt        DateTime         @default(now())
+  deadline         DateTime?
+  updatedAt        DateTime
+  teamId           Int
+  File             File[]
+  Notification     Notification[]
+  Person           Person           @relation(fields: [projectManagerId], references: [id], onDelete: Cascade)
+  Team             Team             @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  ProjectPerson    ProjectPerson[]
+  ProjectRequest   ProjectRequest[]
+  Task             Task[]
+
+  @@index([projectManagerId])
+}
+
+model ProjectPerson {
+  id        Int     @id @default(autoincrement())
+  projectId Int
+  personId  Int
+  Person    Person  @relation(fields: [personId], references: [id], onDelete: Cascade)
+  Project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, personId])
+  @@index([projectId])
+}
+
+model File {
+  id         Int      @id @default(autoincrement())
+  name       String
+  url        String
+  type       String
+  size       Int
+  createdAt  DateTime @default(now())
+  uploadedBy Int
+  projectId  Int
+  Project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  Person     Person   @relation(fields: [uploadedBy], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([uploadedBy])
+}
+
+model Notification {
+  id                    Int                     @id @default(autoincrement())
+  message               String
+  projectId             Int?
+  taskId                Int?
+  createdAt             DateTime                @default(now())
+  type                  NotificationType
+  requesterId           Int?
+  Project               Project?                @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  Person                Person?                 @relation(fields: [requesterId], references: [id])
+  Task                  Task?                   @relation(fields: [taskId], references: [id])
+  NotificationRecipient NotificationRecipient[]
+
+  @@index([createdAt])
+  @@index([projectId])
+  @@index([taskId])
+}
+
+model NotificationRecipient {
+  id             Int          @id @default(autoincrement())
+  notificationId Int
+  personId       Int
+  isRead         Boolean      @default(false)
+  Notification   Notification @relation(fields: [notificationId], references: [id])
+  Person         Person       @relation(fields: [personId], references: [id])
+
+  @@unique([notificationId, personId])
+  @@index([isRead])
+  @@index([notificationId])
+  @@index([personId])
+}
+
+model ProjectRequest {
+  id        Int      @id @default(autoincrement())
+  personId  Int
+  projectId Int
+  approve   Boolean?
+  Person    Person   @relation(fields: [personId], references: [id], onDelete: Cascade)
+  Project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([personId, projectId])
+}
+
+model Team {
+  id          Int           @id @default(autoincrement())
+  name        String
+  teamCode    String        @unique
+  Person      Person[]
+  Project     Project[]
+  TeamRequest TeamRequest[]
+}
+
+model TeamRequest {
+  id       Int    @id @default(autoincrement())
+  teamId   Int
+  personId Int
+  Person   Person @relation(fields: [personId], references: [id], onDelete: Cascade)
+  Team     Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@unique([teamId, personId])
+  @@index([personId])
+  @@index([teamId])
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  ON_HOLD
+}
+
+enum NotificationType {
+  ANNOUNCEMENT
+  REQUEST
+  UPDATE
+}
