@@ -1,0 +1,10 @@
+node_modules
+# Keep environment variables out of version control
+.env*
+.env.development
+.env.test
+/test-results/
+configs/playwright-report/
+/blob-report/
+/playwright/.cache/
+src/public/components/noti-new.js
